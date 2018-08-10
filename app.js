@@ -20,35 +20,27 @@ http.listen(2000, function () {
 
 let io = new require('socket.io')(http);
 
-io.on('connection', newConnection);
+io.on('connection', function (socket) {
+    newConnection(socket);
 
-function newConnection(socket){
+    socket.on('pPlay', () => {
+        io.emit('play')
+    });
+
+    socket.on('pPause', () => {
+        io.emit('pause')
+    });
+
+    socket.on('pTimeChange', (time) => {
+        io.emit('timeChange', time);
+    })
+});
+
+function newConnection(socket) {
     console.log('New connection:');
     console.log(socket.id);
     console.log('-------')
 }
-
-io.on('pPlay', () => {
-    console.log('All play - S');
-   io.sockets.emit('play')
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.use('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');

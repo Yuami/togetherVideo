@@ -1,7 +1,10 @@
 var socket = io('http://localhost:2000');
-socket.on('connect', function(){});
-socket.on('event', function(data){});
-socket.on('disconnect', function(){});
+socket.on('connect', function () {
+});
+socket.on('event', function (data) {
+});
+socket.on('disconnect', function () {
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     // This is the bare minimum JavaScript. You can opt to pass no arguments to setup.
@@ -14,32 +17,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     player.on('playing', () => {
         socket.emit('pPlay', {});
-        console.log('emited');
+    });
+
+    player.on('pause', () => {
+        socket.emit('pPause', {});
+    });
+
+    player.on('progress', () => {
+        if (player.buffered === 0) {
+            socket.emit('pPause', {})
+        } else {
+            socket.emit('pPlay');
+        }
+    });
+
+    let lastTime = player.currentTime;
+
+    player.on('timeupdate', () => {
+        let time = player.currentTime;
+        if (lastTime > time || time - 3 > lastTime)
+            socket.emit('pTimeChange', time);
+
+        lastTime = time;
     });
 
     socket.on('play', () => {
         player.play();
-        console.log('All play - C');
     });
 
+    socket.on('pause', () => {
+        player.pause();
+    });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    socket.on('timeChange', (time) => {
+        player.currentTime = time;
+    });
 
     // Play
     on('.js-play', 'click', () => {
-        pPlay();
+        player.play();
     });
 
     // Pause

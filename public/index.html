@@ -5,14 +5,25 @@
     <title>Title</title>
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/plyr.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
 <script src="javascripts/socket.io.js"></script>
 <script src="javascripts/index.js"></script>
 <script src="javascripts/plyr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
 
 <div class="container">
+
+    <form action="#" class="searchBar">
+        <input type="text" placeholder="Youtube video URL/ID">
+        <button class="submit-btn" type="button">
+            <i class="fa fa-search searchIcon"></i>
+            <i class="fa fa-play playIcon"></i>
+        </button>
+    </form>
+    <br>
     <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="Fm5iP0S1z9w"></div>
 
     <div class="actions">

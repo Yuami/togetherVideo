@@ -1,0 +1,32 @@
+$yellow:#ffa525;
+$white:#ffffff;
+$black:#212121;
+
+body{
+    background-color: $yellow;
+}
+
+.container {
+    background-color: $yellow;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 0 50px;
+    .searchBar{
+        margin-bottom: 10px;
+        display: block;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%,50%);
+        transition: all ease 0.5s;
+        background-color: $white;
+    }
+}
+
+#player {
+    border-radius: 4px;
+    margin-bottom: 15px;
+}

@@ -1,8 +1,26 @@
+body {
+  background-color: #ffa525; }
+
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-.plyr {
-    border-radius: 4px;
-    margin-bottom: 15px;
-}
+  background-color: #ffa525;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 0 50px; }
+  .container .searchBar {
+    margin-bottom: 10px;
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    transition: all ease 0.5s;
+    background-color: #ffffff; }
+
+#player {
+  border-radius: 4px;
+  margin-bottom: 15px; }
+
+/*# sourceMappingURL=style.css.map */

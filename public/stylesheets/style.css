@@ -2,6 +2,7 @@ body {
   background-color: #ffa525; }
 
 .container {
+  max-width: 800px;
   background-color: #ffa525;
   position: fixed;
   top: 0;
@@ -15,9 +16,54 @@ body {
     display: block;
     position: relative;
     left: 50%;
+    height: 30px;
+    width: 30px;
     transform: translate(-50%, 50%);
     transition: all ease 0.5s;
-    background-color: #ffffff; }
+    background-color: #ffffff;
+    border-radius: 30px; }
+    .container .searchBar input[type="text"] {
+      height: 30px;
+      width: 0;
+      padding: 10px;
+      border-radius: 40px;
+      border: 1px solid #ffffff;
+      box-sizing: border-box;
+      outline: 0;
+      display: block;
+      margin: auto;
+      transition: all ease 0.5s;
+      font-size: 1.2rem;
+      color: #d87f00; }
+    .container .searchBar .submit-btn {
+      outline: 0;
+      position: absolute;
+      height: 30px;
+      width: 30px;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      border-radius: 50px;
+      border: 1px solid #ffffff;
+      background-color: #ffa525;
+      color: #ffffff;
+      transition: all ease 0.5s; }
+      .container .searchBar .submit-btn .searchIcon {
+        display: inline-block; }
+      .container .searchBar .submit-btn .playIcon {
+        display: none; }
+    .container .searchBar.open {
+      width: 100%; }
+      .container .searchBar.open input[type="text"] {
+        width: 100%;
+        padding-right: 55px; }
+      .container .searchBar.open .submit-btn {
+        background-color: #212121; }
+        .container .searchBar.open .submit-btn .playIcon {
+          display: inline-block; }
+        .container .searchBar.open .submit-btn .searchIcon {
+          display: none; }
 
 #player {
   border-radius: 4px;

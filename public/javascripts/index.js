@@ -52,29 +52,4 @@ document.addEventListener('DOMContentLoaded', () => {
     socket.on('timeChange', (time) => {
         player.currentTime = time;
     });
-
-    // Play
-    on('.js-play', 'click', () => {
-        player.play();
-    });
-
-    // Pause
-    on('.js-pause', 'click', () => {
-        player.pause();
-    });
-
-    // Stop
-    on('.js-stop', 'click', () => {
-        player.stop();
-    });
-
-    // Rewind
-    on('.js-rewind', 'click', () => {
-        player.rewind();
-    });
-
-    // Forward
-    on('.js-forward', 'click', () => {
-        player.forward();
-    });
 });

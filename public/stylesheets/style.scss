@@ -1,32 +1,93 @@
-$yellow:#ffa525;
-$white:#ffffff;
-$black:#212121;
+$yellow: #ffa525;
+$white: #ffffff;
+$black: #212121;
 
-body{
-    background-color: $yellow;
+body {
+  background-color: $yellow;
 }
 
 .container {
-    background-color: $yellow;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    padding: 0 50px;
-    .searchBar{
-        margin-bottom: 10px;
-        display: block;
-        position: relative;
-        left: 50%;
-        transform: translate(-50%,50%);
-        transition: all ease 0.5s;
-        background-color: $white;
+  max-width: 800px;
+  background-color: $yellow;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 0 50px;
+  .searchBar {
+    margin-bottom: 10px;
+    display: block;
+    position: relative;
+    left: 50%;
+    height: 30px;
+    width: 30px;
+    transform: translate(-50%, 50%);
+    transition: all ease 0.5s;
+    background-color: $white;
+    border-radius: 30px;
+    input[type="text"] {
+      height: 30px;
+      width: 0;
+      padding: 10px;
+      border-radius: 40px;
+      border: 1px solid $white;
+      box-sizing: border-box;
+      outline: 0;
+      display: block;
+      margin: auto;
+      transition: all ease 0.5s;
+      font-size: 1.2rem;
+      color: darken($yellow, 15%);
+      &::placeholder {
+
+      }
     }
+
+    .submit-btn {
+      outline: 0;
+      position: absolute;
+      height: 30px;
+      width: 30px;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      border-radius: 50px;
+      border: 1px solid $white;
+      background-color: $yellow;
+      color:$white;
+      transition: all ease 0.5s;
+      .searchIcon{
+        display: inline-block;
+      }
+      .playIcon{
+        display: none;
+      }
+    }
+
+    &.open{
+      width:100%;
+      input[type="text"]{
+        width: 100%;
+        padding-right: 55px;
+      }
+
+      .submit-btn{
+        background-color: $black;
+        .playIcon{
+          display: inline-block;
+        }
+        .searchIcon{
+          display: none;
+        }
+      }
+    }
+  }
 }
 
 #player {
-    border-radius: 4px;
-    margin-bottom: 15px;
+  border-radius: 4px;
+  margin-bottom: 15px;
 }

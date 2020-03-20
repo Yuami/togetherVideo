@@ -1,45 +1,43 @@
-var socket = io('http://localhost:2000');
-socket.on('connect', function () {
-});
-socket.on('event', function (data) {
-});
-socket.on('disconnect', function () {
-});
+const socket = io('http://localhost:2000');
 
 document.addEventListener('DOMContentLoaded', () => {
-    // This is the bare minimum JavaScript. You can opt to pass no arguments to setup.
-    const player = new Plyr('#player');
+    const url = document.getElementById('url');
+    const container = document.getElementById('container');
+    let player = null;
 
-    // Bind event listener
     function on(selector, type, callback) {
         document.querySelector(selector).addEventListener(type, callback, false);
     }
 
-    player.on('playing', () => {
-        socket.emit('pPlay', {});
-    });
+    const plyrInit = () => {
+        player = new Plyr('#player');
 
-    player.on('pause', () => {
-        socket.emit('pPause', {});
-    });
+        player.on('playing', () => {
+            socket.emit('pPlay', {});
+        });
 
-    player.on('progress', () => {
-        if (player.buffered === 0) {
-            socket.emit('pPause', {})
-        } else {
-            socket.emit('pPlay');
-        }
-    });
+        player.on('pause', () => {
+            socket.emit('pPause', {});
+        });
 
-    let lastTime = player.currentTime;
+        player.on('progress', () => {
+            if (player.buffered === 0) {
+                socket.emit('pPause', {})
+            } else {
+                socket.emit('pPlay');
+            }
+        });
 
-    player.on('timeupdate', () => {
-        let time = player.currentTime;
-        if (lastTime > time || time - 3 > lastTime)
-            socket.emit('pTimeChange', time);
+        let lastTime = player.currentTime;
 
-        lastTime = time;
-    });
+        player.on('timeupdate', () => {
+            let time = player.currentTime;
+            if (lastTime > time || time - 3 > lastTime)
+                socket.emit('pTimeChange', time);
+
+            lastTime = time;
+        });
+    };
 
     socket.on('play', () => {
         player.play();
@@ -77,4 +75,23 @@ document.addEventListener('DOMContentLoaded', () => {
     on('.js-forward', 'click', () => {
         player.forward();
     });
+
+    const getID = (url) => {
+        return new URLSearchParams((new URL(url)).search).get('v')
+    };
+
+    const changeVideo = (url) => {
+        container.innerHTML =
+            `<div id="player" data-plyr-provider="youtube" data-plyr-embed-id="${getID(url)}"></div>`;
+        plyrInit();
+    };
+
+    socket.on('changeVideoURL', changeVideo);
+
+    on('#btn-video', 'click', () => {
+        changeVideo(url.value);
+        socket.emit('handleVideoURL', url.value);
+    });
+
+    plyrInit();
 });

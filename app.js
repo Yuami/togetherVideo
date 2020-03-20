@@ -33,7 +33,11 @@ io.on('connection', function (socket) {
 
     socket.on('pTimeChange', (time) => {
         io.emit('timeChange', time);
-    })
+    });
+
+    socket.on('handleVideoURL', (url) => {
+        io.emit('changeVideoURL', url);
+    });
 });
 
 function newConnection(socket) {

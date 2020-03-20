@@ -13,7 +13,9 @@
 <script src="javascripts/plyr.js"></script>
 
 <div class="container">
-    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="Fm5iP0S1z9w"></div>
+    <div id="container">
+        <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="Fm5iP0S1z9w"></div>
+    </div>
 
     <div class="actions">
         <button type="button" class="btn js-play">Play</button>
@@ -21,6 +23,11 @@
         <button type="button" class="btn js-stop">Stop</button>
         <button type="button" class="btn js-rewind">Rewind</button>
         <button type="button" class="btn js-forward">Forward</button>
+    </div>
+
+    <div>
+        <input type="text" id="url" placeholder="YT URL"/>
+        <button id="btn-video">Change Video</button>
     </div>
 </div>
 </body>
